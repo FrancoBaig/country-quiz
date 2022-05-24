@@ -6,15 +6,22 @@ $primary-font: "Poppins", sans-serif;
 $footer-font: "Montserrat", sans-serif;
 
 /* colors */
-$clr-white: "#FFFFFF";
-$clr-heading: "#F2F2F2";
-$clr-answer: "rgba(96, 102, 208, 0.8)";
-$clr-result: "#1D355D";
-$clr-question: "#2F527B";
-$clr-border: "rgba(96, 102, 208, 0.7)";
-$bg-selection: "#F9A826";
-$bg-warning: "#EA8282";
-$bg-succes: "#60BF88";
+$clr-white: #FFFFFF;
+$clr-heading: #F2F2F2;
+$clr-answer: rgba(96, 102, 208, 0.8);
+$clr-result: #1D355D;
+$clr-question: #2F527B;
+$clr-border: rgba(96, 102, 208, 0.7);
+$bg-selection: #F9A826;
+$bg-warning: #EA8282;
+$bg-succes: #60BF88;
+
+@mixin text($size, $color, $weight) {
+    font-family: $primary-font;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+}
 
 .app {
     display: flex;
@@ -26,5 +33,9 @@ $bg-succes: "#60BF88";
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    
 
+    .header{    
+        @include text(3.6rem, $clr-heading, 700);   
+    }
 }
