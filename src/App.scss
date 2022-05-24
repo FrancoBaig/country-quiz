@@ -25,17 +25,85 @@ $bg-succes: #60BF88;
 
 .app {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 
-    background-image: url("../public/images/background.png");
-    background-size: 100%;
+    background-image: url("./Assets/images/background.png");
+    // background-size: 100%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     
+    /* Header*/
 
-    .header{    
-        @include text(3.6rem, $clr-heading, 700);   
+    .header{ 
+        @include text(3.6rem, $clr-heading, 700);  
+        text-transform: uppercase; 
+    }
+
+    /* Card */
+    .card{
+        width: 46.4rem;
+        // min-height: 51.5rem;
+        background-color: $clr-white;
+        border-radius: 24px;
+        position: relative;
+        box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+
+        .card-img{
+            position: absolute;
+            top: -71px;
+            right: 0;
+        }
+        .card-body{
+
+            padding: 7rem 3.5rem;
+
+           .card-question{
+               @include text(2.4rem, $clr-question, 700);
+               padding-bottom: 3rem;
+           }
+           .answers-container{
+               display: grid;
+               gap: 2rem;
+
+               .answer-item{
+                    @include text(1.8rem, $clr-answer, 500);
+                    padding: 1rem 2rem;
+                    border: 2px solid $clr-border;
+                    border-radius: 12px;
+
+                   display: grid;
+                   grid-template-columns: 1fr 4fr 1fr;
+                    box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.2);
+
+                   cursor: pointer;
+                    &:hover{
+                        color: $clr-white;
+                        background-color: $bg-selection;
+                        border: 2px solid transparent;
+                    }
+
+
+                   .result-icon {
+                       justify-self: flex-end;
+                   }
+               }
+           }
+
+        }
+
+        .btn-next{
+            padding: 1rem 2.5rem;
+            position: absolute;
+            right: 3.5rem;
+            bottom: 1rem;
+            background-color: $bg-selection;
+            border: none;
+            box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+            border-radius: 8px;
+            @include text(16px, $clr-white, 500)
+        }
     }
 }
