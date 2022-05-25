@@ -2,12 +2,48 @@ import "./App.scss";
 import AdventureImage from "./Assets/images/adventure.svg";
 import React, { useState } from "react";
 
+const data = [
+    {
+        id: "A",
+        text: "Vietnam",
+    },
+    {
+        id: "B",
+        text: "Malaysia",
+    },
+    {
+        id: "C",
+        text: "Sweden",
+    },
+    {
+        id: "D",
+        text: "Austria",
+    },
+];
+
 function App() {
     const correctAnswer = "Vietnam";
-
     const [displayBtn, setDisplayBtn] = useState(false);
+    const [answer, setAnswer] = useState(null);
+    const [showWarning, setShowAnswer] = useState(false);
 
-    const sendAnswer = () => {};
+    const handleAnswerClick = (id) => {
+        setAnswer(id);
+
+        if (displayBtn) return;
+        setDisplayBtn(true);
+    };
+
+    const handleSubmit = () => {
+        const selected = document.getElementsByClassName("selected")[0];
+        if (selected.text === correctAnswer) {
+            selected.classList.add("success");
+        } else {
+            selected.classList.add("warning");
+            let correct = document.getElementById(correctAnswer);
+            correct.classList.add("success");
+        }
+    };
 
     return (
         <div className="app">
@@ -25,50 +61,30 @@ function App() {
                             Kuala Lumpur is the capital of
                         </h3>
                         <div className="answers-container">
-                            <div
-                                className="answer-item"
-                                onClick={() => setDisplayBtn(true)}
-                            >
-                                <p>A</p>
-                                <p className="answer-text">Vietnam</p>
-                                <div className="result-icon">
-                                    <i className="fa-regular fa-circle-check"></i>
+                            {data.map((elem) => (
+                                <div
+                                    key={elem.id}
+                                    id={elem.text}
+                                    className={`answer-item ${
+                                        answer === elem.id ? "selected" : ""
+                                    }`}
+                                    onClick={() => handleAnswerClick(elem.id)}
+                                >
+                                    <p>{elem.id}</p>
+                                    <p className="answer-text">{elem.text}</p>
+                                    <div className="result-icon">
+                                        <i className="fa-regular fa-circle-check"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div
-                                className="answer-item"
-                                onClick={() => setDisplayBtn(true)}
-                            >
-                                <p>B</p>
-                                <p className="answer-text">Malaysia</p>
-                                <div className="result-icon">
-                                    <i className="fa-regular fa-circle-check"></i>
-                                </div>
-                            </div>
-                            <div
-                                className="answer-item"
-                                onClick={() => setDisplayBtn(true)}
-                            >
-                                <p>C</p>
-                                <p className="answer-text">Sweden</p>
-                                <div className="result-icon">
-                                    <i className="fa-regular fa-circle-check"></i>
-                                </div>
-                            </div>
-                            <div
-                                className="answer-item"
-                                onClick={() => setDisplayBtn(true)}
-                            >
-                                <p>D</p>
-                                <p className="answer-text">Austria</p>
-                                <div className="result-icon">
-                                    <i className="fa-regular fa-circle-check"></i>
-                                </div>
-                            </div>
+                            ))}
                         </div>
 
                         {displayBtn && (
-                            <button type="button" className="btn-next">
+                            <button
+                                type="button"
+                                className="btn-next"
+                                onClick={handleSubmit}
+                            >
                                 Next
                             </button>
                         )}
