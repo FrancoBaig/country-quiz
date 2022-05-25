@@ -6,6 +6,7 @@ import correct from "./Assets/sounds/sound_correct.wav";
 import wrong from "./Assets/sounds/sound_wrong.wav";
 import Card from "./components/Card";
 import useCountry from "./hooks/useCountry";
+import Loading from "./components/Loading";
 
 function App() {
     const { data, loading, error, submitRequest } = useCountry();
@@ -49,16 +50,19 @@ function App() {
     return (
         <div className="app">
             <div className="content">
-                <h1 className="header">Country quiz</h1>
-                {loading && <h1>Cargando</h1>}
+                {loading && <Loading />}
+
                 {!loading && data && (
-                    <Card
-                        data={data}
-                        answer={answer}
-                        handleAnswerClick={handleAnswerClick}
-                        displayBtn={displayBtn}
-                        handleSubmit={handleSubmit}
-                    />
+                    <>
+                        <h1 className="header">Country quiz</h1>
+                        <Card
+                            data={data}
+                            answer={answer}
+                            handleAnswerClick={handleAnswerClick}
+                            displayBtn={displayBtn}
+                            handleSubmit={handleSubmit}
+                        />
+                    </>
                 )}
             </div>
         </div>
