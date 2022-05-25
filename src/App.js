@@ -1,7 +1,9 @@
 import "./App.scss";
 import AdventureImage from "./Assets/images/adventure.svg";
 import React, { useState } from "react";
-
+import useSound from "use-sound";
+import correct from "./Assets/sounds/sound_correct.wav";
+import wrong from "./Assets/sounds/sound_wrong.wav";
 const data = [
     {
         id: "A",
@@ -25,9 +27,14 @@ function App() {
     const correctAnswer = "Vietnam";
     const [displayBtn, setDisplayBtn] = useState(false);
     const [answer, setAnswer] = useState(null);
-    const [showWarning, setShowAnswer] = useState(false);
+    const [finishedTurn, setFinishedTurn] = useState(false);
+    const [score, setScore] = useState(0);
+
+    const [playSuccess] = useSound(correct, { volume: 0.5 });
+    const [playWrong] = useSound(wrong, { volume: 0.2 });
 
     const handleAnswerClick = (id) => {
+        if (finishedTurn) return;
         setAnswer(id);
 
         if (displayBtn) return;
@@ -36,13 +43,18 @@ function App() {
 
     const handleSubmit = () => {
         const selected = document.getElementsByClassName("selected")[0];
-        if (selected.text === correctAnswer) {
+
+        if (selected.id === correctAnswer) {
             selected.classList.add("success");
+            setScore(score + 1);
+            playSuccess();
         } else {
             selected.classList.add("warning");
             let correct = document.getElementById(correctAnswer);
             correct.classList.add("success");
+            playWrong();
         }
+        setFinishedTurn(true);
     };
 
     return (
