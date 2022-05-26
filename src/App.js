@@ -10,7 +10,7 @@ const loading = false;
 
 function App() {
     // API data
-    // const { data, loading, error, submitRequest } = useCountry();
+    // const { loading, submitRequest } = useCountry();
 
     /* finished game */
     const [finished, setFinished] = useState(false);
