@@ -40,6 +40,9 @@ $bg-success: #60bf88;
 
     /* Header*/
 
+    .content{
+    }
+
     .header {
         @include text(3.6rem, $clr-heading, 700);
         text-transform: uppercase;
@@ -178,4 +181,17 @@ $bg-success: #60bf88;
         
     }
 
+}
+
+
+@media (max-width: 575.98px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 437px) {
+    html {
+        font-size: 50%;
+    }
 }

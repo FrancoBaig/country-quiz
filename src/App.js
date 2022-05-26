@@ -17,7 +17,7 @@ function App() {
     // const { loading, submitRequest } = useCountry();
 
     /* finished game */
-    const [finished, setFinished] = useState(true);
+    const [finished, setFinished] = useState(false);
 
     /* game score */
     const [score, setScore] = useState(0);
