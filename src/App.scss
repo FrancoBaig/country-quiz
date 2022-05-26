@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+
 
 /* Fonts */
 $primary-font: "Poppins", sans-serif;
@@ -12,6 +13,7 @@ $clr-answer: rgba(96, 102, 208, 0.8);
 $clr-result: #1d355d;
 $clr-question: #2f527b;
 $clr-border: rgba(96, 102, 208, 0.7);
+$clr-green: #6fcf97;
 $bg-selection: #f9a826;
 $bg-warning: #ea8282;
 $bg-success: #60bf88;
@@ -141,5 +143,39 @@ $bg-success: #60bf88;
                 transform: scale(1.1);
             }
         }
+
+        /* Results */
+        .result-container{
+            display: grid;
+            justify-items: center;
+
+            .results-img{
+                margin: 4rem 0 5rem 0;
+            }
+            .results-title{
+                @include text(4.8rem, $clr-result, 700);
+            }
+
+            .results-text{
+                @include text(1.8rem, $clr-result, 300);
+
+                span {
+                    font-weight: 700;
+                    font-size: 3.6rem;
+                    color: #6fcf97;
+                }
+            }
+
+            .btn-again{
+                @include text(1.8rem, $clr-result, 600);
+                background-color: $clr-white;
+                border: 2px solid $clr-result;
+                border-radius: 12px;
+                padding: 1.3rem 4rem;
+                margin: 6rem 0 3rem 0;
+            }
+        }
+        
     }
+
 }

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import AdventureImage from "../Assets/images/adventure.svg";
+import winnerImage from "../Assets/images/winner.svg";
 import useSound from "use-sound";
 import correct from "../Assets/sounds/sound_correct.wav";
 import wrong from "../Assets/sounds/sound_wrong.wav";
 
-function Card({ data, nextQuestion, score, setScore }) {
+function Card({ data, nextQuestion, score, setScore, finished }) {
     const [finishedTurn, setFinishedTurn] = useState(false);
     const [playSuccess] = useSound(correct, { volume: 0.5 });
     const [playWrong] = useSound(wrong, { volume: 0.2 });
@@ -22,6 +23,7 @@ function Card({ data, nextQuestion, score, setScore }) {
         const correctAnswer = data.country;
         if (selected.id === correctAnswer) {
             selected.classList.add("success");
+            setScore(score + 1);
             playSuccess();
         } else {
             selected.classList.add("warning");
@@ -31,6 +33,31 @@ function Card({ data, nextQuestion, score, setScore }) {
         }
         setFinishedTurn(true);
     };
+
+    /* end of the game */
+    if (finished) {
+        return (
+            <div className="card">
+                <div className="result-container">
+                    <img
+                        className="results-img"
+                        src={winnerImage}
+                        alt="result"
+                    />
+                    <h2 className="results-title">Results</h2>
+                    <p className="results-text">
+                        You got <span>{score}</span> correct answers
+                    </p>
+                    <button
+                        className="btn-again"
+                        onClick={() => (window.location.href = "/")}
+                    >
+                        Try again
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="card">

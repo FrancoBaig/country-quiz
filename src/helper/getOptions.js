@@ -12,7 +12,6 @@ function getOptions(optionsArray) {
         });
     }
 
-    console.log(objOptions);
     return objOptions;
 }
 

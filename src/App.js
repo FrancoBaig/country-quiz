@@ -17,7 +17,7 @@ function App() {
     // const { loading, submitRequest } = useCountry();
 
     /* finished game */
-    const [finished, setFinished] = useState(false);
+    const [finished, setFinished] = useState(true);
 
     /* game score */
     const [score, setScore] = useState(0);
@@ -54,6 +54,7 @@ function App() {
                             nextQuestion={nextQuestion}
                             score={score}
                             setScore={setScore}
+                            finished={finished}
                         />
                     </>
                 )}
