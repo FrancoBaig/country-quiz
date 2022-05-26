@@ -4,9 +4,13 @@ import React, { useEffect, useState } from "react";
 import Card from "./components/Card";
 import useCountry from "./hooks/useCountry";
 import Loading from "./components/Loading";
-import data from "./data.json";
+// import data from "./data.json";
+
+import getGameData from "./helper/getGameData";
+import raw from "./raw.json";
 
 const loading = false;
+const data = getGameData(raw);
 
 function App() {
     // API data
@@ -40,8 +44,6 @@ function App() {
     return (
         <div className="app">
             <div className="content">
-                {finished && <h1>...</h1>}
-
                 {loading && <Loading />}
 
                 {!loading && data && (

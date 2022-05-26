@@ -20,6 +20,7 @@ function getFlagCard(data) {
     const finalOptions = getOptions(options);
 
     const question = {
+        type: "flag",
         flag: country.flags.png,
         title: "Which country does this flag belong to?",
         country: country.name.common,

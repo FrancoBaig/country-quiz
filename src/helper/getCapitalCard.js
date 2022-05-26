@@ -18,9 +18,10 @@ function getCardData(data) {
     }
 
     const finalOptions = getOptions(options);
-    console.log(country.capital);
+
     const question = {
-        title: ` is the capital of`,
+        type: "capital",
+        title: `${country.capital[0]} is the capital of`,
         country: country.name.common,
         options: finalOptions,
     };

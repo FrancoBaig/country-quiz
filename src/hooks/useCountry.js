@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import getCapitalCard from "../helper/getCapitalCard";
 import getFlagCard from "../helper/getFlagCard";
+import getGameData from "../helper/getGameData";
 
 import raw from "../raw.json";
 
@@ -22,10 +23,7 @@ function useCountry() {
     };
 
     const gameData = (rawData) => {
-        const cardCapitalData = getCapitalCard(rawData);
-        // const cardFlagData = getCapitalFlag(raw);
-
-        setData(cardCapitalData);
+        setData(getGameData(rawData));
         setLoading(false);
     };
 
@@ -34,7 +32,8 @@ function useCountry() {
         setError(false);
 
         const allData = await getAll();
-        // gameData(allData);
+
+        gameData(allData);
     };
 
     return { data, loading, error, submitRequest };
