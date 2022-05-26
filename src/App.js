@@ -1,56 +1,58 @@
 import "./App.scss";
 
 import React, { useEffect, useState } from "react";
-
 import Card from "./components/Card";
 import useCountry from "./hooks/useCountry";
 import Loading from "./components/Loading";
+import data from "./data.json";
 
-const data = {
-    title: "Malabo is the capital of",
-    country: "Equatorial Guinea",
-    options: [
-        {
-            id: "A",
-            text: "Isle of Man",
-        },
-        {
-            id: "B",
-            text: "Equatorial Guinea",
-        },
-        {
-            id: "C",
-            text: "El Salvador",
-        },
-        {
-            id: "D",
-            text: "British Indian Ocean Territory",
-        },
-    ],
-};
 const loading = false;
 
 function App() {
-    // const { error, submitRequest } = useCountry();
-    // const [displayBtn, setDisplayBtn] = useState(false);
-    const [answer, setAnswer] = useState(null);
+    // API data
+    // const { data, loading, error, submitRequest } = useCountry();
 
+    /* finished game */
+    const [finished, setFinished] = useState(false);
+
+    /* game score */
     const [score, setScore] = useState(0);
-    const [selected, setSelected] = useState("");
 
+    /* currently question */
+    const [numberQuestion, setNumberQuestion] = useState(0);
+
+    /* first data request */
     useEffect(() => {
         // submitRequest();
     }, []);
 
+    const nextQuestion = () => {
+        /* set finished gamed  */
+        if (numberQuestion === data.length - 1) {
+            setFinished(true);
+            return;
+        }
+
+        // set next question
+        setNumberQuestion(numberQuestion + 1);
+    };
+
     return (
         <div className="app">
             <div className="content">
+                {finished && <h1>...</h1>}
+
                 {loading && <Loading />}
 
                 {!loading && data && (
                     <>
                         <h1 className="header">Country quiz</h1>
-                        <Card data={data} answer={answer} selected={selected} />
+                        <Card
+                            data={data[numberQuestion]}
+                            nextQuestion={nextQuestion}
+                            score={score}
+                            setScore={setScore}
+                        />
                     </>
                 )}
             </div>

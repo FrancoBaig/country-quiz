@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import getCardData from "../helper/getCardData";
+import getCapitalCard from "../helper/getCapitalCard";
+import getFlagCard from "../helper/getFlagCard";
 
 function useCountry() {
     const [data, setData] = useState(null);
@@ -19,9 +20,10 @@ function useCountry() {
     };
 
     const gameData = (raw) => {
-        const cardData = getCardData(raw);
+        const cardCapitalData = getCapitalCard(raw);
+        // const cardFlagData = getCapitalFlag(raw);
 
-        setData(cardData);
+        setData(cardCapitalData);
         setLoading(false);
     };
 

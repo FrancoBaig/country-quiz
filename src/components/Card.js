@@ -4,17 +4,24 @@ import useSound from "use-sound";
 import correct from "../Assets/sounds/sound_correct.wav";
 import wrong from "../Assets/sounds/sound_wrong.wav";
 
-function Card({ data, displayBtn }) {
+function Card({ data, nextQuestion, score, setScore }) {
     const [finishedTurn, setFinishedTurn] = useState(false);
     const [playSuccess] = useSound(correct, { volume: 0.5 });
     const [playWrong] = useSound(wrong, { volume: 0.2 });
+    const [selected, setSelected] = useState("");
+
+    const handleNextQuestion = () => {
+        nextQuestion();
+        setFinishedTurn(false); // para qué necesito esto?
+    };
+
     const handleAnswerClick = (id) => {
         if (finishedTurn) return;
         const selected = document.getElementById(id);
+        setSelected(selected);
         const correctAnswer = data.country;
         if (selected.id === correctAnswer) {
             selected.classList.add("success");
-            // setScore(score + 1);
             playSuccess();
         } else {
             selected.classList.add("warning");
@@ -29,11 +36,14 @@ function Card({ data, displayBtn }) {
         <div className="card">
             <img className="card-img" src={AdventureImage} alt="adventure" />
             <div className="card-body">
+                {data.type === "flag" && (
+                    <img className="card-flag" src={data.flag} alt="flag" />
+                )}
                 <h3 className="card-question">{data.title}</h3>
                 <div className="answers-container">
                     {data.options.map((elem) => (
                         <div
-                            key={elem.id}
+                            key={elem.text}
                             id={elem.text}
                             className={`answer-item `}
                             onClick={() => handleAnswerClick(elem.text)}
@@ -47,7 +57,11 @@ function Card({ data, displayBtn }) {
                 </div>
 
                 {finishedTurn && (
-                    <button type="button" className="btn-next">
+                    <button
+                        type="button"
+                        className="btn-next"
+                        onClick={handleNextQuestion}
+                    >
                         Next
                     </button>
                 )}
