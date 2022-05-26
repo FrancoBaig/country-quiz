@@ -40,9 +40,6 @@ $bg-success: #60bf88;
 
     /* Header*/
 
-    .content{
-    }
-
     .header {
         @include text(3.6rem, $clr-heading, 700);
         text-transform: uppercase;
@@ -188,10 +185,20 @@ $bg-success: #60bf88;
     html {
         font-size: 55%;
     }
+
+    
 }
 
 @media (max-width: 437px) {
     html {
         font-size: 50%;
+    }
+
+    .app{
+        justify-content: flex-start;
+
+        .content {
+            margin-top: 12rem;
+        }
     }
 }

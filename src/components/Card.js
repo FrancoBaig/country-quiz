@@ -19,19 +19,35 @@ function Card({ data, nextQuestion, score, setScore, finished }) {
     const handleAnswerClick = (id) => {
         if (finishedTurn) return;
         const selected = document.getElementById(id);
+
+        /* display icon */
+
         setSelected(selected);
         const correctAnswer = data.country;
         if (selected.id === correctAnswer) {
             selected.classList.add("success");
+            addIcon(selected, true);
             setScore(score + 1);
             playSuccess();
         } else {
             selected.classList.add("warning");
+            addIcon(selected, false);
             let correct = document.getElementById(correctAnswer);
             correct.classList.add("success");
+            addIcon(correct, true);
             playWrong();
         }
         setFinishedTurn(true);
+    };
+
+    const addIcon = (div, isCorrect) => {
+        let iElement = div.children[1];
+
+        if (isCorrect) {
+            iElement.classList.add("fa-circle-check");
+        } else {
+            iElement.classList.add("fa-circle-xmark");
+        }
     };
 
     /* end of the game */
@@ -78,7 +94,7 @@ function Card({ data, nextQuestion, score, setScore, finished }) {
                             {elem.id}
                             <p className="answer-text">{elem.text}</p>
 
-                            <i className="fa-regular fa-circle-check"></i>
+                            <i className="fa-regular "></i>
                         </div>
                     ))}
                 </div>
