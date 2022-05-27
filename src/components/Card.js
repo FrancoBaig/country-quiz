@@ -77,7 +77,7 @@ function Card({ data, nextQuestion, score, setScore, finished }) {
                     <p className="results-text">
                         You got{" "}
                         <span className={score >= 3 ? "green" : "red"}>
-                            {score}
+                            {score}{" "}
                         </span>
                         correct answers
                     </p>
