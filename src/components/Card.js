@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AdventureImage from "../Assets/images/adventure.svg";
 import winnerImage from "../Assets/images/winner.svg";
 import useSound from "use-sound";
@@ -15,7 +15,7 @@ function Card({ data, nextQuestion, score, setScore, finished }) {
     const [playLoser] = useSound(loser1, { volume: 0.5 });
     // const [selected, setSelected] = useState("");
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!finished) return;
         if (score >= 3) {
             playWinner();
