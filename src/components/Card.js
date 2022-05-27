@@ -9,7 +9,7 @@ function Card({ data, nextQuestion, score, setScore, finished }) {
     const [finishedTurn, setFinishedTurn] = useState(false);
     const [playSuccess] = useSound(correct, { volume: 0.5 });
     const [playWrong] = useSound(wrong, { volume: 0.2 });
-    const [selected, setSelected] = useState("");
+    // const [selected, setSelected] = useState("");
 
     const handleNextQuestion = () => {
         nextQuestion();
@@ -22,7 +22,7 @@ function Card({ data, nextQuestion, score, setScore, finished }) {
 
         /* display icon */
 
-        setSelected(selected);
+        // setSelected(selected); si tengo error voolver
         const correctAnswer = data.country;
         if (selected.id === correctAnswer) {
             selected.classList.add("success");

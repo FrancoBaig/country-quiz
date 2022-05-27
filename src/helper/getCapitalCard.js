@@ -1,4 +1,3 @@
-import shuffleArray from "./shuffleArray";
 import getOptions from "./getOptions";
 
 function getCardData(data) {

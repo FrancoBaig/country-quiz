@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import getCapitalCard from "../helper/getCapitalCard";
-import getFlagCard from "../helper/getFlagCard";
 import getGameData from "../helper/getGameData";
-
-import raw from "../raw.json";
 
 function useCountry() {
     const [data, setData] = useState(null);

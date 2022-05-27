@@ -2,7 +2,7 @@ import "./App.scss";
 
 import React, { useEffect, useState } from "react";
 import Card from "./components/Card";
-import useCountry from "./hooks/useCountry";
+// import useCountry from "./hooks/useCountry";
 import Loading from "./components/Loading";
 // import data from "./data.json";
 
