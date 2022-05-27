@@ -24,6 +24,14 @@ $bg-success: #60bf88;
     font-weight: $weight;
     color: $color;
 }
+.green {
+
+    color: #6fcf97;
+}
+
+.red {
+    color: #c22;
+}
 
 .app {
     display: flex;
@@ -162,7 +170,8 @@ $bg-success: #60bf88;
                 span {
                     font-weight: 700;
                     font-size: 3.6rem;
-                    color: #6fcf97;
+
+                    
                 }
             }
 
@@ -173,6 +182,7 @@ $bg-success: #60bf88;
                 border-radius: 12px;
                 padding: 1.3rem 4rem;
                 margin: 6rem 0 3rem 0;
+                cursor: pointer;
             }
         }
         

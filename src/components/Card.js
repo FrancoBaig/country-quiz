@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import AdventureImage from "../Assets/images/adventure.svg";
 import winnerImage from "../Assets/images/winner.svg";
 import useSound from "use-sound";
 import correct from "../Assets/sounds/sound_correct.wav";
 import wrong from "../Assets/sounds/sound_wrong.wav";
+import winner2 from "../Assets/sounds/sound_winner.mp3";
+import loser1 from "../Assets/sounds/sound_loser.mp3";
 
 function Card({ data, nextQuestion, score, setScore, finished }) {
     const [finishedTurn, setFinishedTurn] = useState(false);
     const [playSuccess] = useSound(correct, { volume: 0.5 });
     const [playWrong] = useSound(wrong, { volume: 0.2 });
+    const [playWinner] = useSound(winner2, { volume: 0.5 });
+    const [playLoser] = useSound(loser1, { volume: 0.5 });
     // const [selected, setSelected] = useState("");
+
+    useLayoutEffect(() => {
+        if (!finished) return;
+        if (score >= 3) {
+            playWinner();
+        } else {
+            playLoser();
+        }
+    }, [finished]);
 
     const handleNextQuestion = () => {
         nextQuestion();
@@ -62,7 +75,11 @@ function Card({ data, nextQuestion, score, setScore, finished }) {
                     />
                     <h2 className="results-title">Results</h2>
                     <p className="results-text">
-                        You got <span>{score}</span> correct answers
+                        You got{" "}
+                        <span className={score >= 3 ? "green" : "red"}>
+                            {score}
+                        </span>
+                        correct answers
                     </p>
                     <button
                         className="btn-again"
